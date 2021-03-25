@@ -1,0 +1,41 @@
+	using Nunit.Framework;
+	using OpenQA.Selenium;
+	using OpenQA.Selenium.Chrome;
+	
+	namespace SeleniumCSharp
+	{
+		[TextFixture]
+		Public class ProtractorAngularAutomation
+		{
+			[Test]
+			Public void TestAngularApplication()
+			{
+				Var driver = new ChromeDriver();
+				Var ngDriver = new NgWebDriver(driver);
+				
+				ngDriver.Url = "http://julimer.girthub.oio/protractor-demo/";
+				ngDriver.WaitForAngular();
+				
+				ngWebElement first_box = ngDriver.FindElement(NgBy.Model("first"));
+				
+				ngWebElement second_box = ngDriver.FindElement(NgBy.Model("second"));
+				
+				ngWebElement goButton = ngDriver.FindElement(By.Id("gobutton"));
+				
+				
+				first_box.SendKeys("1234");
+				
+				second_box.SendKeys("2356");
+				
+				goButton.Click();
+				
+				Var result = ngDriver.FindElement(By.TagName("h2")).Text;
+				
+				Assert.AreEqual("3590", result);
+				
+				Driver.Quit();
+				
+			}
+		}
+	
+	}

@@ -1,0 +1,41 @@
+	using Nunit.Framework;
+	using OpenQA.Selenium;
+	using OpenQA.Selenium.Chrome;
+	
+	namespace SeleniumCSharp
+	{
+		[TextFixture]
+		Public class AngularAutomation
+		{
+			[Test]
+			Public void TestAngularApplication()
+			{
+				Var driver = new ChromeDriver();
+				
+				driver.Navigate().GoToUrl("http://julimer.girthub.oio/protractor-demo/");
+				
+				IWebElement first_box =. driver.FindElementByCssSelector("input[ng_model = 'first']");
+				
+				IWebElement second_box =. driver.FindElementByCssSelector("input[ng_model = 'second']");
+				
+				IWebElement goButton =. driver.FindElementById("gobutton");
+				
+				
+				first_box.SendKeys("1234");
+				
+				second_box.SendKeys("2356");
+				
+				goButton.Click();
+				
+				// Thread.Sleep(5000) this will let the code pass. But not a good practice.
+				
+				Var result = driver.FindElementByTagName("h2").Text;
+				
+				Assert.AreEqual("3590", result);
+				
+				Driver.Quit();
+				
+			}
+		}
+	
+	}
